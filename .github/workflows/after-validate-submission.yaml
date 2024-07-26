@@ -91,6 +91,7 @@ jobs:
         run: |
           cd ./scripts
           for file in $(echo '${{ steps.changed-files.outputs.added_files }} ${{ steps.changed-files.outputs.modified_files }}' | grep 'model-output' | grep '.*-RETRO.*\.\(csv\|parquet\)'); do
+            echo "Processing file: $file"
             Rscript retro_ensemble.R $file
           done
         if: ${{ env.retro != '0' }}
