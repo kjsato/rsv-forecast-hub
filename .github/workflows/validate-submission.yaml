@@ -45,8 +45,7 @@ jobs:
           Rscript -e 'remotes::install_github("kjsato/hubAdmin@main-mr_schema", upgrade = "never")'
       - name: Install HubValidations
         run: |
-          remotes::install_github("kjsato/hubValidations@main-mr_schema-conv_origin_date
-", upgrade = "never")
+          remotes::install_github("kjsato/hubValidations@main-mr_schema-conv_origin_date", upgrade = "never")
         shell: Rscript {0}
 
       - name: Run validations
