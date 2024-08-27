@@ -136,7 +136,7 @@ jobs:
           git pull origin main
           if [ -n "$(git status --porcelain)" ]; then
             git add .
-            git commit -m "Upload new files to RSV data repo by ${GITHUB_ACTOR} in #${{ github.event.pull_request.number }}"
+            git commit -m "Upload new files to RSV data repo by ${{ github.event.pull_request.user.login }} in #${{ github.event.pull_request.number }}"
             git push
             echo "RSV data uploaded";
           else
