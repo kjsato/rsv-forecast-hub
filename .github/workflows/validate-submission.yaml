@@ -39,7 +39,7 @@ jobs:
           Rscript -e 'remotes::install_github("kjsato/hubUtils@main-mr_schema", upgrade = "never")'
       - name: Install hubData from specific branch
         run: |
-          Rscript -e 'remotes::install_github("kjsato/hubData@feature/main-mr_schema", upgrade = "never")'
+          Rscript -e 'remotes::install_github("kjsato/hubData@main-mr_schema", upgrade = "never")'
       - name: Install hubAdmin from specific branch
         run: |
           Rscript -e 'remotes::install_github("kjsato/hubAdmin@main-mr_schema", upgrade = "never")'
