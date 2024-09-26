@@ -1,8 +1,8 @@
 ## ensemble.R customized for rsv-forecast-hub, split from rsv-forecast-hub_data
 
 local_path <- paste0(dirname(here::here()))
-dir_path <- file.path(local_path, "rsv-forecast-hub/")
-data_path <- file.path(local_path, "rsv-forecast-hub/")
+dir_path <- file.path(local_path, "rsv-forecast-hub-kjsato/")
+data_path <- file.path(local_path, "rsv-forecast-hub-kjsato/")
 print(local_path)
 #dir_path <- local_path
 #data_path <- local_path
@@ -27,10 +27,15 @@ library(jsonlite)
 ## ----setup_specifics, include=FALSE---------------------------------------------------
 
 dates_archive <- unlist(jsonlite::read_json(file.path(dir_path, "hub-config/tasks.json"))$rounds[[1]]$model_tasks[[1]]$task_ids$origin_date$optional)
-dates_archive <- dates_archive[as.Date(dates_archive) <= Sys.Date()]
+valid_dates <- dates_archive[as.Date(dates_archive) <= Sys.Date()]
 
-curr_origin_date <- as.Date(max(dates_archive, na.rm = TRUE))
-#curr_origin_date <- as.Date("2024-03-24")
+if (length(valid_dates) == 0) {
+    curr_origin_date <- as.Date(min(dates_archive, na.rm = TRUE)) # temporary until starting date has passed
+} else {
+    curr_origin_date <- as.Date(max(valid_dates, na.rm = TRUE))
+}
+#curr_origin_date <- as.Date(max(dates_archive, na.rm = TRUE))
+#curr_origin_date <- as.Date("2024-10-13")
 
 ## ----prep_ens, include=FALSE--------------------------------------------------
 
